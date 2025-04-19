@@ -120,18 +120,10 @@ class ListenersManager {
       });
     });
     
-    // Then notify all listeners in a single batch using requestAnimationFrame
-    // This ensures UI updates happen during the next browser paint cycle
+    // Notify all collected listeners
     if (listenersToNotify.length > 0) {
-      if (typeof window !== 'undefined') {
-        // Use requestAnimationFrame for smoother UI updates in browser
-        window.requestAnimationFrame(() => {
-          listenersToNotify.forEach(listener => listener(state));
-        });
-      } else {
-        // Fallback for non-browser environments
-        listenersToNotify.forEach(listener => listener(state));
-      }
+      // Execute all listeners immediately for best responsiveness
+      listenersToNotify.forEach(listener => listener(state));
     }
   }
 }
@@ -259,21 +251,14 @@ export const StateProvider: React.FC<StateProviderProps> = ({
     // Find which paths changed before updating the state
     const changedPaths = findChangedPaths(prevState, nextState);
     
-    // Use requestAnimationFrame for smoother UI updates
-    if (typeof window !== 'undefined' && window.requestAnimationFrame) {
-      // Update React state in the next frame
-      dispatch(action);
-      
-      // Optimistically update state reference for immediate access
-      stateRef.current = nextState;
-      
-      // Notify listeners with the new state
-      listenersManager.current.notifyListeners(nextState, changedPaths);
-    } else {
-      // Fallback for non-browser environments
-      dispatch(action);
-      listenersManager.current.notifyListeners(nextState, changedPaths);
-    }
+    // Update React state
+    dispatch(action);
+    
+    // Optimistically update state reference for immediate access
+    stateRef.current = nextState;
+    
+    // Notify listeners with the new state
+    listenersManager.current.notifyListeners(nextState, changedPaths);
     
     // End performance tracking
     endTracking();
@@ -296,21 +281,14 @@ export const StateProvider: React.FC<StateProviderProps> = ({
     // Find which paths changed
     const changedPaths = findChangedPaths(prevState, nextState);
     
-    // Optimistically update state reference and dispatch
-    if (typeof window !== 'undefined') {
-      // Update React state
-      dispatch(action);
-      
-      // Update reference for immediate access
-      stateRef.current = nextState;
-      
-      // Notify listeners
-      listenersManager.current.notifyListeners(nextState, changedPaths);
-    } else {
-      // Fallback for non-browser environments
-      dispatch(action);
-      listenersManager.current.notifyListeners(nextState, changedPaths);
-    }
+    // Update React state
+    dispatch(action);
+    
+    // Optimistically update state reference for immediate access
+    stateRef.current = nextState;
+    
+    // Notify listeners with the new state
+    listenersManager.current.notifyListeners(nextState, changedPaths);
     
     endTracking();
   }, [log]);
@@ -332,21 +310,14 @@ export const StateProvider: React.FC<StateProviderProps> = ({
     // Find which paths changed
     const changedPaths = findChangedPaths(prevState, nextState);
     
-    // Optimistically update state reference and dispatch
-    if (typeof window !== 'undefined') {
-      // Update React state
-      dispatch(action);
-      
-      // Update reference for immediate access
-      stateRef.current = nextState;
-      
-      // Notify listeners
-      listenersManager.current.notifyListeners(nextState, changedPaths);
-    } else {
-      // Fallback for non-browser environments
-      dispatch(action);
-      listenersManager.current.notifyListeners(nextState, changedPaths);
-    }
+    // Update React state
+    dispatch(action);
+    
+    // Optimistically update state reference for immediate access
+    stateRef.current = nextState;
+    
+    // Notify listeners with the new state
+    listenersManager.current.notifyListeners(nextState, changedPaths);
     
     endTracking();
   }, [log]);
