@@ -21,14 +21,17 @@ const Header: React.FC = () => {
           <Link href="/" className="text-sm font-medium text-gray-700 hover:text-primary transition">
             Overview
           </Link>
-          <Link href="/" className="text-sm font-medium text-gray-700 hover:text-primary transition">
+          <Link href="/documentation" className="text-sm font-medium text-gray-700 hover:text-primary transition">
             Documentation
           </Link>
-          <Link href="/" className="text-sm font-medium text-gray-700 hover:text-primary transition">
+          <Link href="/examples" className="text-sm font-medium text-gray-700 hover:text-primary transition">
             Examples
           </Link>
-          <Link href="/" className="text-sm font-medium text-gray-700 hover:text-primary transition">
+          <Link href="/api-reference" className="text-sm font-medium text-gray-700 hover:text-primary transition">
             API
+          </Link>
+          <Link href="/tutorials" className="text-sm font-medium text-gray-700 hover:text-primary transition">
+            Tutorials
           </Link>
         </nav>
         <div className="flex items-center space-x-3">

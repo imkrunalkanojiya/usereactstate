@@ -26,10 +26,10 @@ const Footer: React.FC = () => {
           <div>
             <h4 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">Resources</h4>
             <ul className="space-y-2 text-sm">
-              <li><Link href="/"><a className="hover:text-primary transition">Documentation</a></Link></li>
-              <li><Link href="/"><a className="hover:text-primary transition">API Reference</a></Link></li>
-              <li><Link href="/"><a className="hover:text-primary transition">Examples</a></Link></li>
-              <li><Link href="/"><a className="hover:text-primary transition">Tutorials</a></Link></li>
+              <li><Link href="/documentation" className="hover:text-primary transition">Documentation</Link></li>
+              <li><Link href="/api-reference" className="hover:text-primary transition">API Reference</Link></li>
+              <li><Link href="/examples" className="hover:text-primary transition">Examples</Link></li>
+              <li><Link href="/tutorials" className="hover:text-primary transition">Tutorials</Link></li>
             </ul>
           </div>
           
