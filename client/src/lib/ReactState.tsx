@@ -96,8 +96,11 @@ class ListenersManager {
   }
   
   notifyListeners(state: State, changedPaths: Set<string>): void {
+    // Use a Set to avoid duplicate notifications
     const notifiedListeners = new Set<Listener>();
+    const listenersToNotify: Array<Listener> = [];
     
+    // First, collect all listeners that need to be notified
     changedPaths.forEach(changedPath => {
       this.listeners.forEach((listeners, listenerPath) => {
         // Notify if the listener path is affected by the change
@@ -109,13 +112,27 @@ class ListenersManager {
         ) {
           listeners.forEach(listener => {
             if (!notifiedListeners.has(listener)) {
-              listener(state);
+              listenersToNotify.push(listener);
               notifiedListeners.add(listener);
             }
           });
         }
       });
     });
+    
+    // Then notify all listeners in a single batch using requestAnimationFrame
+    // This ensures UI updates happen during the next browser paint cycle
+    if (listenersToNotify.length > 0) {
+      if (typeof window !== 'undefined') {
+        // Use requestAnimationFrame for smoother UI updates in browser
+        window.requestAnimationFrame(() => {
+          listenersToNotify.forEach(listener => listener(state));
+        });
+      } else {
+        // Fallback for non-browser environments
+        listenersToNotify.forEach(listener => listener(state));
+      }
+    }
   }
 }
 
@@ -226,49 +243,110 @@ export const StateProvider: React.FC<StateProviderProps> = ({
   };
   
   const setState = useCallback((path: string | string[], value: any) => {
+    // Start performance tracking
     const [startTime, endTracking] = performanceTracker.current.track('setState', Array.isArray(path) ? path.join('.') : path);
     
+    // Get current state and prepare action
     const prevState = stateRef.current;
     const action = { type: SET_STATE, payload: { path, value } };
+    
+    // Calculate the next state
     const nextState = reducer(prevState, action);
     
+    // Debug logging if enabled
     log(action, prevState, nextState);
-    dispatch(action);
     
+    // Find which paths changed before updating the state
     const changedPaths = findChangedPaths(prevState, nextState);
-    listenersManager.current.notifyListeners(nextState, changedPaths);
     
+    // Use requestAnimationFrame for smoother UI updates
+    if (typeof window !== 'undefined' && window.requestAnimationFrame) {
+      // Update React state in the next frame
+      dispatch(action);
+      
+      // Optimistically update state reference for immediate access
+      stateRef.current = nextState;
+      
+      // Notify listeners with the new state
+      listenersManager.current.notifyListeners(nextState, changedPaths);
+    } else {
+      // Fallback for non-browser environments
+      dispatch(action);
+      listenersManager.current.notifyListeners(nextState, changedPaths);
+    }
+    
+    // End performance tracking
     endTracking();
   }, [log]);
   
   const mergeState = useCallback((partialState: Partial<State>) => {
+    // Track performance
     const [startTime, endTracking] = performanceTracker.current.track('mergeState');
     
+    // Get current state and prepare action
     const prevState = stateRef.current;
     const action = { type: MERGE_STATE, payload: partialState };
+    
+    // Calculate the next state
     const nextState = reducer(prevState, action);
     
+    // Debug logging
     log(action, prevState, nextState);
-    dispatch(action);
     
+    // Find which paths changed
     const changedPaths = findChangedPaths(prevState, nextState);
-    listenersManager.current.notifyListeners(nextState, changedPaths);
+    
+    // Optimistically update state reference and dispatch
+    if (typeof window !== 'undefined') {
+      // Update React state
+      dispatch(action);
+      
+      // Update reference for immediate access
+      stateRef.current = nextState;
+      
+      // Notify listeners
+      listenersManager.current.notifyListeners(nextState, changedPaths);
+    } else {
+      // Fallback for non-browser environments
+      dispatch(action);
+      listenersManager.current.notifyListeners(nextState, changedPaths);
+    }
     
     endTracking();
   }, [log]);
   
   const deleteState = useCallback((path: string | string[]) => {
+    // Track performance
     const [startTime, endTracking] = performanceTracker.current.track('deleteState', Array.isArray(path) ? path.join('.') : path);
     
+    // Get current state and prepare action
     const prevState = stateRef.current;
     const action = { type: DELETE_STATE, payload: path };
+    
+    // Calculate the next state
     const nextState = reducer(prevState, action);
     
+    // Debug logging
     log(action, prevState, nextState);
-    dispatch(action);
     
+    // Find which paths changed
     const changedPaths = findChangedPaths(prevState, nextState);
-    listenersManager.current.notifyListeners(nextState, changedPaths);
+    
+    // Optimistically update state reference and dispatch
+    if (typeof window !== 'undefined') {
+      // Update React state
+      dispatch(action);
+      
+      // Update reference for immediate access
+      stateRef.current = nextState;
+      
+      // Notify listeners
+      listenersManager.current.notifyListeners(nextState, changedPaths);
+    } else {
+      // Fallback for non-browser environments
+      dispatch(action);
+      listenersManager.current.notifyListeners(nextState, changedPaths);
+    }
     
     endTracking();
   }, [log]);
@@ -331,19 +409,34 @@ export const useStore = () => {
 // Helper hooks for common use cases
 export const useStateValue = <T,>(path: string | string[]): [T, (value: T) => void] => {
   const { getState, setState, subscribe } = useStore();
+  // Create a ref to store the latest path value to avoid stale closures
+  const pathRef = useRef(path);
   const [value, setValue] = React.useState<T>(getState(path));
   
+  // Update the ref when path changes
+  useEffect(() => {
+    pathRef.current = path;
+  }, [path]);
+  
   React.useEffect(() => {
+    // Immediately synchronize with current state
+    setValue(getState(path));
+    
     const unsubscribe = subscribe(path, (newState) => {
-      setValue(getState(path));
+      setValue(getState(pathRef.current));
     });
     
     return unsubscribe;
   }, [path, getState, subscribe]);
   
+  // Use a stable callback that doesn't close over stale props/state
   const updateValue = useCallback((newValue: T) => {
-    setState(path, newValue);
-  }, [setState, path]);
+    // Access path from ref to ensure we're using the latest value
+    setState(pathRef.current, newValue);
+    
+    // Optimistically update local state for immediate feedback
+    setValue(newValue);
+  }, [setState]);
   
   return [value, updateValue];
 };
@@ -351,11 +444,21 @@ export const useStateValue = <T,>(path: string | string[]): [T, (value: T) => vo
 // Hook to watch a specific part of state
 export const useStateWatch = <T,>(path: string | string[]): T => {
   const { getState, subscribe } = useStore();
+  // Create a ref to store the latest path value to avoid stale closures
+  const pathRef = useRef(path);
   const [value, setValue] = React.useState<T>(getState(path));
   
+  // Update the ref when path changes
+  useEffect(() => {
+    pathRef.current = path;
+  }, [path]);
+  
   React.useEffect(() => {
+    // Immediately synchronize with current state
+    setValue(getState(path));
+    
     const unsubscribe = subscribe(path, () => {
-      setValue(getState(path));
+      setValue(getState(pathRef.current));
     });
     
     return unsubscribe;
