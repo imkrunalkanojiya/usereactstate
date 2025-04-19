@@ -18,17 +18,17 @@ const Header: React.FC = () => {
           <span className="text-xs bg-green-100 text-green-800 px-2 py-0.5 rounded-full">v0.1.0</span>
         </div>
         <nav className="hidden md:flex items-center space-x-6">
-          <Link href="/">
-            <a className="text-sm font-medium text-gray-700 hover:text-primary transition">Overview</a>
+          <Link href="/" className="text-sm font-medium text-gray-700 hover:text-primary transition">
+            Overview
           </Link>
-          <Link href="/">
-            <a className="text-sm font-medium text-gray-700 hover:text-primary transition">Documentation</a>
+          <Link href="/" className="text-sm font-medium text-gray-700 hover:text-primary transition">
+            Documentation
           </Link>
-          <Link href="/">
-            <a className="text-sm font-medium text-gray-700 hover:text-primary transition">Examples</a>
+          <Link href="/" className="text-sm font-medium text-gray-700 hover:text-primary transition">
+            Examples
           </Link>
-          <Link href="/">
-            <a className="text-sm font-medium text-gray-700 hover:text-primary transition">API</a>
+          <Link href="/" className="text-sm font-medium text-gray-700 hover:text-primary transition">
+            API
           </Link>
         </nav>
         <div className="flex items-center space-x-3">

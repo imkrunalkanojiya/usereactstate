@@ -1,0 +1,71 @@
+[vite] connecting...
+[vite] connected.
+Warning: validateDOMNesting(...): <a> cannot appear as a descendant of &lt;a&gt;.
+    at a
+    at a
+    at https://279503dd-bff9-42d8-8ea9-5d6169816a38-00-1spyrnht3xir6.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/wouter.js?v=0496731f:337:18
+    at nav
+    at div
+    at header
+    at Header
+    at div
+    at Home
+    at Route (https://279503dd-bff9-42d8-8ea9-5d6169816a38-00-1spyrnht3xir6.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/wouter.js?v=0496731f:323:16)
+    at Switch (https://279503dd-bff9-42d8-8ea9-5d6169816a38-00-1spyrnht3xir6.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/wouter.js?v=0496731f:379:17)
+    at Router
+    at StateProvider (https://279503dd-bff9-42d8-8ea9-5d6169816a38-00-1spyrnht3xir6.picard.replit.dev/src/lib/ReactState.tsx:140:3)
+    at Provider (https://279503dd-bff9-42d8-8ea9-5d6169816a38-00-1spyrnht3xir6.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-532U4VYK.js?v=0496731f:72:15)
+    at TooltipProvider (https://279503dd-bff9-42d8-8ea9-5d6169816a38-00-1spyrnht3xir6.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@radix-ui_react-tooltip.js?v=0496731f:2247:5)
+    at QueryClientProvider (https://279503dd-bff9-42d8-8ea9-5d6169816a38-00-1spyrnht3xir6.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@tanstack_react-query.js?v=0496731f:2805:3)
+    at App
+    at StateProvider (https://279503dd-bff9-42d8-8ea9-5d6169816a38-00-1spyrnht3xir6.picard.replit.dev/src/lib/ReactState.tsx?v=B_YVG2bo1PD9w-cmjeFTI:140:3)
+at a
+at a
+at https://279503dd-bff9-42d8-8ea9-5d6169816a38-00-1spyrnht3xir6.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/wouter.js?v=0496731f:337:18
+at nav
+at div
+at header
+at Header
+at div
+at Home
+at Route (https://279503dd-bff9-42d8-8ea9-5d6169816a38-00-1spyrnht3xir6.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/wouter.js?v=0496731f:323:16)
+at Switch (https://279503dd-bff9-42d8-8ea9-5d6169816a38-00-1spyrnht3xir6.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/wouter.js?v=0496731f:379:17)
+at Router
+at StateProvider (https://279503dd-bff9-42d8-8ea9-5d6169816a38-00-1spyrnht3xir6.picard.replit.dev/src/lib/ReactState.tsx:140:3)
+at Provider (https://279503dd-bff9-42d8-8ea9-5d6169816a38-00-1spyrnht3xir6.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-532U4VYK.js?v=0496731f:72:15)
+at TooltipProvider (https://279503dd-bff9-42d8-8ea9-5d6169816a38-00-1spyrnht3xir6.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@radix-ui_react-tooltip.js?v=0496731f:2247:5)
+at QueryClientProvider (https://279503dd-bff9-42d8-8ea9-5d6169816a38-00-1spyrnht3xir6.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@tanstack_react-query.js?v=0496731f:2805:3)
+at App
+at StateProvider (https://279503dd-bff9-42d8-8ea9-5d6169816a38-00-1spyrnht3xir6.picard.replit.dev/src/lib/ReactState.tsx?v=B_YVG2bo1PD9w-cmjeFTI:140:3)
+at t.value (https://279503dd-bff9-42d8-8ea9-5d6169816a38-00-1spyrnht3xir6.picard.replit.dev/__replco/static/devtools/eruda/3.2.3/eruda.js:2:17465)
+at new t (https://279503dd-bff9-42d8-8ea9-5d6169816a38-00-1spyrnht3xir6.picard.replit.dev/__replco/static/devtools/eruda/3.2.3/eruda.js:2:12630)
+at t.value (https://279503dd-bff9-42d8-8ea9-5d6169816a38-00-1spyrnht3xir6.picard.replit.dev/__replco/static/devtools/eruda/3.2.3/eruda.js:2:32766)
+at https://279503dd-bff9-42d8-8ea9-5d6169816a38-00-1spyrnht3xir6.picard.replit.dev/__replco/static/devtools/eruda/3.2.3/eruda.js:2:34400
+Action: SET_STATE
+Previous State: 
+Object {counter: 0, activeTab: "examples", todos: Array(2), user: {…}}
+Payload: 
+Object {path: "activeTab", value: "implementation"}
+New State: 
+Object {counter: 0, activeTab: "implementation", todos: Array(2), user: {…}}
+Action: SET_STATE
+Previous State: 
+Object {counter: 0, activeTab: "implementation", todos: Array(2), user: {…}}
+Payload: 
+Object {path: "activeTab", value: "testing"}
+New State: 
+Object {counter: 0, activeTab: "testing", todos: Array(2), user: {…}}
+Action: SET_STATE
+Previous State: 
+Object {counter: 0, activeTab: "testing", todos: Array(2), user: {…}}
+Payload: 
+Object {path: "activeTab", value: "testing"}
+New State: 
+Object {counter: 0, activeTab: "testing", todos: Array(2), user: {…}}
+Action: SET_STATE
+Previous State: 
+Object {counter: 0, activeTab: "testing", todos: Array(2), user: {…}}
+Payload: 
+Object {path: "activeTab", value: "testing"}
+New State: 
+Object {counter: 0, activeTab: "testing", todos: Array(2), user: {…}}
