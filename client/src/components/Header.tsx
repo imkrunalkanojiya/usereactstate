@@ -33,7 +33,7 @@ const Header: React.FC = () => {
           
         </nav>
         <div className="flex items-center space-x-3">
-          <a href='https://github.com/imkrunalkanojiya/usereactstate' className="text-sm bg-gray-100 hover:bg-gray-200 text-gray-700 px-3 py-1.5 rounded-md transition flex items-center">
+        <a href='https://github.com/imkrunalkanojiya/usereactstate' className="text-sm bg-gray-100 hover:bg-gray-200 text-gray-700 px-3 py-1.5 rounded-md transition flex items-center">
             <svg
               className="w-4 h-4 mr-1.5"
               viewBox="0 0 24 24"

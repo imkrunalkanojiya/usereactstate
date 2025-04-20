@@ -166,13 +166,6 @@ const [user, setUser] = useStateValue<User>('user');
 - `useStore()`: Access store context
 - `useEntireStore()`: Get complete state
 
-### Utilities
-
-- `queryClient`: HTTP client for data fetching
-- `clsx`: Class name utility
-- `twMerge`: Tailwind class merging
-
-
 ## License
 
 This project is licensed under the ISC License - see the [LICENSE](LICENSE) file for details.
