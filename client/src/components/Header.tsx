@@ -15,7 +15,7 @@ const Header: React.FC = () => {
             <circle cx="12" cy="12" r="3" />
           </svg>
           <span className="text-xl font-semibold">ReactState</span>
-          <span className="text-xs bg-green-100 text-green-800 px-2 py-0.5 rounded-full">v0.1.0</span>
+          <span className="text-xs bg-green-100 text-green-800 px-2 py-0.5 rounded-full">v1.0.0</span>
         </div>
         <nav className="hidden md:flex items-center space-x-6">
           <Link href="/" className="text-sm font-medium text-gray-700 hover:text-primary transition">
@@ -30,9 +30,7 @@ const Header: React.FC = () => {
           <Link href="/api-reference" className="text-sm font-medium text-gray-700 hover:text-primary transition">
             API
           </Link>
-          <Link href="/tutorials" className="text-sm font-medium text-gray-700 hover:text-primary transition">
-            Tutorials
-          </Link>
+          
         </nav>
         <div className="flex items-center space-x-3">
           <button className="text-sm bg-gray-100 hover:bg-gray-200 text-gray-700 px-3 py-1.5 rounded-md transition flex items-center">
@@ -45,9 +43,7 @@ const Header: React.FC = () => {
             </svg>
             GitHub
           </button>
-          <button className="text-sm bg-primary hover:bg-blue-600 text-white px-3 py-1.5 rounded-md transition">
-            Get Started
-          </button>
+         
         </div>
       </div>
     </header>

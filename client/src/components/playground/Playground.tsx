@@ -1,5 +1,5 @@
 import React from 'react';
-import { useStateValue } from '@/lib/ReactState';
+import { useStateValue } from '@imkrunalkanojiya/usereactstate';
 import TabContent from './TabContent';
 
 const Playground: React.FC = () => {

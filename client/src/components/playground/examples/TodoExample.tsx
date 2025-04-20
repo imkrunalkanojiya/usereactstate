@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useStore, useStateValue } from '@/lib/ReactState';
+import { useStateValue } from '@imkrunalkanojiya/usereactstate';
 
 const TodoExample: React.FC = () => {
   const [todos, setTodos] = useStateValue<Array<{ id: number, text: string, done: boolean }>>('todos');
@@ -100,7 +100,7 @@ const TodoExample: React.FC = () => {
         <div className="text-sm font-mono bg-gray-900 text-white p-3 rounded overflow-auto" style={{ maxHeight: '300px' }}>
           <pre>
 {`import React, { useState } from 'react';
-import { StateProvider, useStore } from './ReactState';
+import { StateProvider, useStore } from '@imkrunalkanojiya/usereactstate';
 
 const TodoItem = ({ todo }) => {
   const { setState, getState } = useStore();

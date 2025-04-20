@@ -1,5 +1,5 @@
 import React from 'react';
-import { useStateValue } from '@/lib/ReactState';
+import {useStateValue} from "@imkrunalkanojiya/usereactstate"
 
 const CounterExample: React.FC = () => {
   const [counter, setCounter] = useStateValue<number>('counter');
@@ -37,7 +37,7 @@ const CounterExample: React.FC = () => {
         <div className="text-sm font-mono bg-gray-900 text-white p-3 rounded overflow-auto" style={{ maxHeight: '300px' }}>
           <pre>
 {`import React from 'react';
-import { StateProvider, useStore } from './ReactState';
+import { StateProvider, useStore } from '@imkrunalkanojiya/usereactstate';
 
 const Counter = () => {
   const { getState, setState } = useStore();

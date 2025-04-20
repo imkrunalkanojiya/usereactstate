@@ -24,14 +24,14 @@ const Home: React.FC = () => {
               <p className="text-lg text-gray-600 mb-8">
                 A lightweight, zero-configuration global state solution for React applications
               </p>
-              <div className="flex flex-wrap justify-center gap-4">
+              {/* <div className="flex flex-wrap justify-center gap-4">
                 <button className="px-6 py-2.5 bg-primary hover:bg-blue-600 text-white rounded-md font-medium transition">
                   Install Package
                 </button>
                 <button className="px-6 py-2.5 bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 rounded-md font-medium transition">
                   Read Docs
                 </button>
-              </div>
+              </div> */}
             </div>
           </div>
         </section>

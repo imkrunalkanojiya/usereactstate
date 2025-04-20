@@ -3,13 +3,14 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { queryClient } from "./lib/queryClient";
-import { StateProvider } from "./lib/ReactState";
 import Home from "@/pages/Home";
 import Documentation from "@/pages/Documentation";
 import ApiReference from "@/pages/ApiReference";
 import Examples from "@/pages/Examples";
-import Tutorials from "@/pages/Tutorials";
 import NotFound from "@/pages/not-found";
+
+// State Management Library
+import { StateProvider } from "@imkrunalkanojiya/usereactstate";
 
 function Router() {
   return (
@@ -18,7 +19,6 @@ function Router() {
       <Route path="/documentation" component={Documentation} />
       <Route path="/api-reference" component={ApiReference} />
       <Route path="/examples" component={Examples} />
-      <Route path="/tutorials" component={Tutorials} />
       <Route component={NotFound} />
     </Switch>
   );
@@ -54,7 +54,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <StateProvider initialState={initialState} debug={true}>
+        <StateProvider initialState={initialState} debug={false}>
           <Toaster />
           <Router />
         </StateProvider>

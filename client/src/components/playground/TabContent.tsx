@@ -8,7 +8,7 @@ import CounterExample from './examples/CounterExample';
 import TodoExample from './examples/TodoExample';
 import DebugTools from './debug/DebugTools';
 import PerformanceMonitor from './debug/PerformanceMonitor';
-import { useStore } from '@/lib/ReactState';
+import { useStore } from '@imkrunalkanojiya/usereactstate';
 
 interface TabContentProps {
   activeTab: string;

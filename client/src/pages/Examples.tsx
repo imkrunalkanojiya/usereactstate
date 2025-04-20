@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'wouter';
-import { useStateValue, useStore } from '@/lib/ReactState';
+import { useStateValue, useStore } from '@imkrunalkanojiya/usereactstate';
 
 // Basic Example - Counter
 const CounterExample: React.FC = () => {

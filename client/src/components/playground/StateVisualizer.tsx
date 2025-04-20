@@ -1,5 +1,5 @@
 import React from 'react';
-import { useStore } from '@/lib/ReactState';
+import { useStore } from '@imkrunalkanojiya/usereactstate';
 
 const StateVisualizer: React.FC = () => {
   const { getState } = useStore();

@@ -1,6 +1,6 @@
 import React from 'react';
-import { LogEntry } from '@/lib/ReactStateTypes';
-import { useStateValue } from '@/lib/ReactState';
+import { LogEntry } from '@imkrunalkanojiya/usereactstate';
+import { useStateValue } from '@imkrunalkanojiya/usereactstate';
 import { nanoid } from 'nanoid';
 
 interface ActionLogProps {
